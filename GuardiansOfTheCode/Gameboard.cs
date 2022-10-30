@@ -6,7 +6,8 @@ using Common;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Linq;
-
+using GuardiansOfTheCode.Adapters;
+using MilkyWayponLib;
 
 namespace GuardiansOfTheCode
 {
@@ -30,6 +31,24 @@ namespace GuardiansOfTheCode
                 Console.ReadKey();
                 PlayerFirstLevel();
             }
+            else if (level == -1)
+            {
+                Console.WriteLine("Play special level -1 ?");
+                Console.ReadKey();
+                PlaySpecialLevel();
+
+            }
+
+        }
+
+        public void PlaySpecialLevel()
+        {
+            _player.Weapon = new WeaponAdapter(Blaster(20, 15, 15));
+        }
+
+        private ISpaceWeapon Blaster(int v1, int v2, int v3)
+        {
+            throw new NotImplementedException();
         }
 
         public void PlayerFirstLevel()
