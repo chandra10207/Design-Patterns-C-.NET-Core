@@ -1,7 +1,7 @@
 ﻿using System;
 namespace GuardiansOfTheCode
 {
-    public class Giant
+    public class Giant : IEnemy
     {
         private int _health;
         private readonly int _level;

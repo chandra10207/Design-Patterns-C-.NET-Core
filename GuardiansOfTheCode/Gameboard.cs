@@ -8,34 +8,43 @@ using System.Net.Http;
 using System.Linq;
 using GuardiansOfTheCode.Adapters;
 using MilkyWayponLib;
+using GuardiansOfTheCode.Facades;
 
 namespace GuardiansOfTheCode
 {
     public class Gameboard
     {
+        private GameboardFacade _gameBoardFacade;
         private PrimaryPlayer _player;
 
         public Gameboard()
         {
             _player = PrimaryPlayer.Instance;
-            _player.Weapon = new Sword(12, 8);
+            _gameBoardFacade = new GameboardFacade();
+            //_player.Weapon = new Sword(12, 8);
 
         }
 
         public async Task PlayerArea(int level)
         {
-            if(level == 1)
-            {
-                _player.Cards = (await FetchCards()).ToArray();
-                Console.WriteLine("Ready to play Level 1 ?");
-                Console.ReadKey();
-                PlayerFirstLevel();
-            }
-            else if (level == -1)
+            //if(level == 1)
+            //{
+            //    _player.Cards = (await FetchCards()).ToArray();
+            //    Console.WriteLine("Ready to play Level 1 ?");
+            //    Console.ReadKey();
+            //    PlayerFirstLevel();
+            //}
+            if (level == -1)
             {
                 Console.WriteLine("Play special level -1 ?");
                 Console.ReadKey();
                 PlaySpecialLevel();
+
+            }
+            else
+            {
+                await _gameBoardFacade.Play(_player, level);
+
 
             }
 
@@ -51,37 +60,33 @@ namespace GuardiansOfTheCode
             throw new NotImplementedException();
         }
 
-        public void PlayerFirstLevel()
-        {
-            const int currentLevel = 1;
-            EnemyFactory factory = new EnemyFactory(currentLevel);
+        //public void PlayerFirstLevel()
+        //{
+        //    const int currentLevel = 1;
+        //    EnemyFactory factory = new EnemyFactory(currentLevel);
 
-            List<IEnemy> enemies = new List<IEnemy>();
+        //    List<IEnemy> enemies = new List<IEnemy>();
 
-            for(int i=0; i<10; i++)
-            {
-                enemies.Add(factory.SpawnZombie(currentLevel));
-            }
+        //    for(int i=0; i<10; i++)
+        //    {
+        //        enemies.Add(factory.SpawnZombie(currentLevel));
+        //    }
 
-            for (int i = 0; i < 3; i++)
-            {
-                enemies.Add(factory.SpawnWerewolf(currentLevel));
-            }
+        //    for (int i = 0; i < 3; i++)
+        //    {
+        //        enemies.Add(factory.SpawnWerewolf(currentLevel));
+        //    }
 
-            foreach (var enemy in enemies)
-            {
-                while(enemy.Health > 0 || _player.Health > 0)
-                {
-                    _player.Weapon.Use(enemy);
-                    enemy.Attack(_player);
+        //    foreach (var enemy in enemies)
+        //    {
+        //        while(enemy.Health > 0 || _player.Health > 0)
+        //        {
+        //            _player.Weapon.Use(enemy);
+        //            enemy.Attack(_player);
+        //        }
+        //    }
 
-                }
-
-
-              
-            }
-
-        }
+        //}
 
 
 

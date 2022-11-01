@@ -23,7 +23,13 @@ namespace Common
             }
         }
 
-        public virtual int Attack { get { return _attack; } }
+        public virtual int Attack
+        {
+            get
+            {
+                return _attack;
+            }
+        }
         public virtual int Defense { get { return _defense; } }
 
 

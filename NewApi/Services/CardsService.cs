@@ -10,8 +10,9 @@ namespace Api.Services
         {
             return new List<Card>()
             {
-                //new Card() {Attack = 90, Defense = 80, Name = "Ultimate Shadow" },
+                new Card("Ultimate Shadow" , 90,80),
                 //new Card() {Attack = 66, Defense = 55, Name = "Puppet of Doom" }
+
             };
 
         }

@@ -15,6 +15,7 @@
     <None Remove="Newtonsoft.Json" />
     <None Remove="MilkyWayponLib" />
     <None Remove="Adapters\" />
+    <None Remove="Facades\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -26,5 +27,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Adapters\" />
+    <Folder Include="Facades\" />
   </ItemGroup>
 </Project>
