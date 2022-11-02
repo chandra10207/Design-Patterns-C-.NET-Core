@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using static System.Net.WebRequestMethods;
 using System.Threading.Tasks;
 using System.Linq;
+using GuardiansOfTheCode.Proxies;
 
 namespace GuardiansOfTheCode.Facades
 {
@@ -16,6 +17,15 @@ namespace GuardiansOfTheCode.Facades
         private HttpClient _http;
         private EnemyFactory _factory;
         private List<IEnemy> _enemies = new List<IEnemy>();
+        private CardsProxy _cardsProxy;
+
+
+        public GameboardFacade()
+        {
+            _cardsProxy = new CardsProxy();
+
+        }
+
 
         public async Task Play(PrimaryPlayer player, int areaLevel)
         {
@@ -68,12 +78,13 @@ namespace GuardiansOfTheCode.Facades
 
         private async Task AddPlayerCards()
         {
-            using (_http = new HttpClient())
-            {
-                var cardsJson = await _http.GetStringAsync("http://localhost:23481/api/cards");
-                _player.Cards =  JsonConvert.DeserializeObject<IEnumerable<Card>>(cardsJson).ToArray();
+            //using (_http = new HttpClient())
+            //{
+            //    var cardsJson = await _http.GetStringAsync("http://localhost:23481/api/cards");
+            //    _player.Cards =  JsonConvert.DeserializeObject<IEnumerable<Card>>(cardsJson).ToArray();
 
-            }
+            //}
+            _player.Cards = ( await _cardsProxy.GetCards()).ToArray();
         }
 
         private void InitializeEnemyFactory(int areaLevel)
