@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Common;
+using GuardiansOfTheCode.Facades;
 using MilkyWayponLib;
 
 namespace GuardiansOfTheCode
@@ -11,16 +12,23 @@ namespace GuardiansOfTheCode
     {
         static void Main(string[] args)
         {
+            PrimaryPlayer player = PrimaryPlayer.Instance;
+            Console.WriteLine($"{player.name} - Level {player.level}");
+
             try
             {
-                //TestApiConnection().Wait();
+                TestApiConnection().Wait();
                 //TestDecorators();
-                //ISpaceWeapon
 
                 //Gameboard board = new Gameboard();
                 //board.PlayerArea(1).Wait();
-                TestComposite();
-                Console.ReadKey();
+
+                GameboardFacade gameboard = new GameboardFacade();
+                gameboard.Play(player, 1).Wait();
+
+
+                //TestComposite();
+                //Console.ReadKey();
             }
             catch(Exception e)
             {

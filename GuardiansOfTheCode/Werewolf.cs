@@ -21,9 +21,10 @@ namespace GuardiansOfTheCode
             _level = level;
         }
 
-        public void Attack(PrimaryPlayer player)
+        public int Attack(PrimaryPlayer player)
         {
             Console.WriteLine("Werewolf Attacking" + player.name);
+            return 20;
 
         }
 

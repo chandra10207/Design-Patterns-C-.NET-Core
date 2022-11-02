@@ -17,6 +17,7 @@
     <None Remove="Adapters\" />
     <None Remove="Facades\" />
     <None Remove="Proxies\" />
+    <None Remove="Strategies\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -30,5 +31,6 @@
     <Folder Include="Adapters\" />
     <Folder Include="Facades\" />
     <Folder Include="Proxies\" />
+    <Folder Include="Strategies\" />
   </ItemGroup>
 </Project>

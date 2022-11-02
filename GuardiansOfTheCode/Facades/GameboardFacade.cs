@@ -7,6 +7,8 @@ using static System.Net.WebRequestMethods;
 using System.Threading.Tasks;
 using System.Linq;
 using GuardiansOfTheCode.Proxies;
+using System.Threading;
+using GuardiansOfTheCode.Strategies;
 
 namespace GuardiansOfTheCode.Facades
 {
@@ -37,6 +39,7 @@ namespace GuardiansOfTheCode.Facades
             LoadZombies(_areaLevel);
             LoadWerewolves(_areaLevel);
             LoadGiants(_areaLevel);
+            StartTurns();
         }
 
 
@@ -155,6 +158,48 @@ namespace GuardiansOfTheCode.Facades
             {
                 _enemies.Add(_factory.SpawnGiant(areaLevel));
             }
+
+        }
+
+
+
+        private void StartTurns()
+        {
+            IEnemy currentEnemy = null;
+            while (true)
+            {
+                if(currentEnemy == null)
+                {
+                    if(_enemies.Count > 0)
+                    {
+                        currentEnemy = _enemies[0];
+                    }
+                    else
+                    {
+                        Console.WriteLine("You Won this level!!");
+                    }
+                }
+
+
+                //Your Turn
+                //_player.Weapon.Use(currentEnemy);
+
+                //Enemy's Turn
+                int damage = currentEnemy.Attack(_player);
+                if(_player.Health < 20)
+                {
+                    new CriticalHealthIndicator().NotifyAboutDamage(_player.Health, damage);
+                }
+                else
+                {
+                    new RegularDamageIndicator().NotifyAboutDamage(_player.Health, damage);
+                }
+                Thread.Sleep(500);
+
+
+            }
+
+
 
         }
 

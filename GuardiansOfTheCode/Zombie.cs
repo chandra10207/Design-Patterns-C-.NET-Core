@@ -24,10 +24,10 @@ namespace GuardiansOfTheCode
 
         }
 
-        public void Attack(PrimaryPlayer player)
+        public int Attack(PrimaryPlayer player)
         {
             Console.WriteLine("Zombie Attacking " + player.name);
-
+            return 10;
         }
 
         public void Defend(PrimaryPlayer player)
