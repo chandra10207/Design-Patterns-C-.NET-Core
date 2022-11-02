@@ -2,7 +2,7 @@
 
 namespace Common
 {
-    public class Card
+    public class Card :ICardComponent
     {
         protected string _name;
         protected int _attack;
@@ -31,6 +31,26 @@ namespace Common
             }
         }
         public virtual int Defense { get { return _defense; } }
+
+        public void Add(ICardComponent card)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Display()
+        {
+            return $"{_name}: {_attack} : {_defense}";
+        }
+
+        public ICardComponent Get(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Remove(ICardComponent card)
+        {
+            throw new NotImplementedException();
+        }
 
 
 

@@ -18,7 +18,8 @@ namespace GuardiansOfTheCode
                 //ISpaceWeapon
 
                 //Gameboard board = new Gameboard();
-                //board.PlayerArea(1);
+                //board.PlayerArea(1).Wait();
+                TestComposite();
                 Console.ReadKey();
             }
             catch(Exception e)
@@ -74,6 +75,31 @@ namespace GuardiansOfTheCode
             soldier = new DefenseDecorators(soldier, "Heavy Armor", 45);
             Console.WriteLine($"Final State: {soldier.Attack} / {soldier.Defense}");
 
+
+        }
+
+        private static void TestComposite()
+        {
+            CardDeck deck = new CardDeck();
+            CardDeck attackDeck = new CardDeck();
+            CardDeck defenseDeck = new CardDeck();
+
+            attackDeck.Add(new Card("Basic Infantry Unit", 12, 15));
+            attackDeck.Add(new Card("Advanced Infantry Unit", 25, 18));
+            attackDeck.Add(new Card("Cavarly Unit", 32, 24));
+
+            defenseDeck.Add(new Card("Wooden Shield", 0, 6));
+            defenseDeck.Add(new Card("IronShield", 0, 9));
+            defenseDeck.Add(new Card("New shining Armor", 0, 40));
+
+
+            deck.Add(attackDeck);
+            deck.Add(new Card("Small Beast", 16, 3));
+            deck.Add(new Card("High Elf Rouge", 22, 7));
+            deck.Add(defenseDeck);
+
+            deck.Display();
+            Console.WriteLine(deck.Display());
 
         }
     }
