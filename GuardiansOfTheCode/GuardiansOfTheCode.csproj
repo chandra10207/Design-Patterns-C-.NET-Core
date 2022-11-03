@@ -21,6 +21,7 @@
     <None Remove="Events\" />
     <None Remove="Observer\" />
     <None Remove="Command\" />
+    <None Remove="Battlefields\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -38,5 +39,6 @@
     <Folder Include="Events\" />
     <Folder Include="Observer\" />
     <Folder Include="Command\" />
+    <Folder Include="Battlefields\" />
   </ItemGroup>
 </Project>

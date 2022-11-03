@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Common;
+using GuardiansOfTheCode.Battlefields;
 using GuardiansOfTheCode.Facades;
 using MilkyWayponLib;
 
@@ -12,31 +13,44 @@ namespace GuardiansOfTheCode
     {
         static void Main(string[] args)
         {
-            PrimaryPlayer player = PrimaryPlayer.Instance;
-            Console.WriteLine($"{player.Name} - Level {player.Level}");
+            //PrimaryPlayer player = PrimaryPlayer.Instance;
+            //Console.WriteLine($"{player.Name} - Level {player.Level}");
 
-            try
-            {
-                TestApiConnection().Wait();
+            //try
+            //{
+            //    TestApiConnection().Wait();
 
-                //TestDecorators();
+            //    /*TestDecorators();
+            //    //Gameboard board = new Gameboard();
+            //    //board.PlayerArea(1).Wait();*/
 
-                //Gameboard board = new Gameboard();
-                //board.PlayerArea(1).Wait();
-
-                GameboardFacade gameboard = new GameboardFacade();
-                gameboard.Play(player, 1).Wait();
+            //    GameboardFacade gameboard = new GameboardFacade();
+            //    gameboard.Play(player, 1).Wait();
 
 
-                //TestComposite();
-                //Console.ReadKey();
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine("Failed to initialize the game");
-                Console.ReadKey();
-            }
+            //    /*TestComposite();*/
+            //}
+            //catch(Exception e)
+            //{
+            //    Console.WriteLine("Failed to initialize the game");
+            //    Console.ReadKey();
+            //}
+
+            TestBattlefields();
+
+
         }
+
+        private static void TestBattlefields()
+        {
+            BattlefieldTemplate battlefield = new SnowyBattlefield();
+            Console.WriteLine(battlefield.Describe());
+            Console.ReadKey();
+
+
+        }
+
+
 
         private static async Task TestApiConnection()
         {
