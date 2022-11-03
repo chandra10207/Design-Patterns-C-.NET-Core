@@ -26,13 +26,14 @@ namespace GuardiansOfTheCode
 
         public int Attack(PrimaryPlayer player)
         {
-            Console.WriteLine("Zombie Attacking " + player.name);
+            Console.WriteLine("Zombie Attacking " + player.Name);
+            //player.Health -= 10;
             return 10;
         }
 
         public void Defend(PrimaryPlayer player)
         {
-            Console.WriteLine("Zombie Defendending " + player.name);
+            Console.WriteLine("Zombie Defendending " + player.Name);
         }
        
     }

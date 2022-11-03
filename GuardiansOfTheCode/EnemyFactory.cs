@@ -12,9 +12,6 @@ namespace GuardiansOfTheCode
         private Stack<Werewolf> _werewolvesPool = new Stack<Werewolf>();
         private Stack<Giant> _giantsPool = new Stack<Giant>();
 
-
-
-
         private void PreloadZombies()
         {
             int count;

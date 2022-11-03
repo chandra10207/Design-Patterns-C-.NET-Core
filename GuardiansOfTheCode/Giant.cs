@@ -23,14 +23,14 @@ namespace GuardiansOfTheCode
 
         public int Attack(PrimaryPlayer player)
         {
-            Console.WriteLine("Giant Attacking" + player.name);
+            Console.WriteLine("Giant Attacking" + player.Name);
             return 30;
 
         }
 
         public void Defend(PrimaryPlayer player)
         {
-            Console.WriteLine("Giant Defendending" + player.name);
+            Console.WriteLine("Giant Defendending" + player.Name);
         }
     }
 }

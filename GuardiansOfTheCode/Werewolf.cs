@@ -23,14 +23,14 @@ namespace GuardiansOfTheCode
 
         public int Attack(PrimaryPlayer player)
         {
-            Console.WriteLine("Werewolf Attacking" + player.name);
+            Console.WriteLine("Werewolf Attacking" + player.Name);
             return 20;
 
         }
 
         public void Defend(PrimaryPlayer player)
         {
-            Console.WriteLine("Werewolf Defendending" + player.name);
+            Console.WriteLine("Werewolf Defendending" + player.Name);
         }
     }
 }

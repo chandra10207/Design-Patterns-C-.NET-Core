@@ -9,6 +9,7 @@ using System.Linq;
 using GuardiansOfTheCode.Proxies;
 using System.Threading;
 using GuardiansOfTheCode.Strategies;
+using GuardiansOfTheCode.Observer;
 
 namespace GuardiansOfTheCode.Facades
 {
@@ -27,7 +28,6 @@ namespace GuardiansOfTheCode.Facades
             _cardsProxy = new CardsProxy();
 
         }
-
 
         public async Task Play(PrimaryPlayer player, int areaLevel)
         {
@@ -166,6 +166,12 @@ namespace GuardiansOfTheCode.Facades
         private void StartTurns()
         {
             IEnemy currentEnemy = null;
+
+            var regularObserver = new HealthChangedObserver(new RegularDamageIndicator());
+            var criticalObserver = new HealthChangedObserver(new CriticalHealthIndicator());
+            regularObserver.WatchPlayerHealth(_player);
+            criticalObserver.WatchPlayerHealth(_player);
+
             while (true)
             {
                 if(currentEnemy == null)
@@ -186,14 +192,17 @@ namespace GuardiansOfTheCode.Facades
 
                 //Enemy's Turn
                 int damage = currentEnemy.Attack(_player);
-                if(_player.Health < 20)
-                {
-                    new CriticalHealthIndicator().NotifyAboutDamage(_player.Health, damage);
-                }
-                else
-                {
-                    new RegularDamageIndicator().NotifyAboutDamage(_player.Health, damage);
-                }
+                //_player.Health -= damage;
+                _player.Hit(damage);
+
+                //if(_player.Health < 20)
+                //{
+                //    new CriticalHealthIndicator().NotifyAboutDamage(_player.Health, damage);
+                //}
+                //else
+                //{
+                //    new RegularDamageIndicator().NotifyAboutDamage(_player.Health, damage);
+                //}
                 Thread.Sleep(500);
 
 

@@ -13,11 +13,12 @@ namespace GuardiansOfTheCode
         static void Main(string[] args)
         {
             PrimaryPlayer player = PrimaryPlayer.Instance;
-            Console.WriteLine($"{player.name} - Level {player.level}");
+            Console.WriteLine($"{player.Name} - Level {player.Level}");
 
             try
             {
                 TestApiConnection().Wait();
+
                 //TestDecorators();
 
                 //Gameboard board = new Gameboard();
