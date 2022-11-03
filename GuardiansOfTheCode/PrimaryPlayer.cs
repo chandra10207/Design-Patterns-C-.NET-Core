@@ -62,13 +62,12 @@ namespace GuardiansOfTheCode
             }
             private set
             {
-                _health = Health ;
-                if (HealthChanged != null)
+                if (_health != value)
                 {
-                    HealthChanged(this, new HealthChangedEventArgs(Health));
+                    _health = value;
+                    HealthChanged?.Invoke(this, new HealthChangedEventArgs(Health));
                 }
-                // Smaller form of the above code
-                //HealthChanged?.Invoke(this, new HealthChangedEventArgs(Health));
+                
             }
         }
 

@@ -20,6 +20,7 @@
     <None Remove="Strategies\" />
     <None Remove="Events\" />
     <None Remove="Observer\" />
+    <None Remove="Command\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -36,5 +37,6 @@
     <Folder Include="Strategies\" />
     <Folder Include="Events\" />
     <Folder Include="Observer\" />
+    <Folder Include="Command\" />
   </ItemGroup>
 </Project>

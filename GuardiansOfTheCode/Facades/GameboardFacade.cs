@@ -3,13 +3,13 @@ using System.Net.Http;
 using System.Collections.Generic;
 using Common;
 using Newtonsoft.Json;
-using static System.Net.WebRequestMethods;
 using System.Threading.Tasks;
 using System.Linq;
 using GuardiansOfTheCode.Proxies;
 using System.Threading;
 using GuardiansOfTheCode.Strategies;
 using GuardiansOfTheCode.Observer;
+using GuardiansOfTheCode.Command;
 
 namespace GuardiansOfTheCode.Facades
 {
@@ -161,8 +161,6 @@ namespace GuardiansOfTheCode.Facades
 
         }
 
-
-
         private void StartTurns()
         {
             IEnemy currentEnemy = null;
@@ -179,21 +177,20 @@ namespace GuardiansOfTheCode.Facades
                     if(_enemies.Count > 0)
                     {
                         currentEnemy = _enemies[0];
+                        _enemies.RemoveAt(0);
                     }
                     else
                     {
                         Console.WriteLine("You Won this level!!");
+                        break;
                     }
                 }
-
-
-                //Your Turn
                 //_player.Weapon.Use(currentEnemy);
 
                 //Enemy's Turn
-                int damage = currentEnemy.Attack(_player);
+                //int damage = currentEnemy.Attack(_player);
                 //_player.Health -= damage;
-                _player.Hit(damage);
+                //_player.Hit(damage);
 
                 //if(_player.Health < 20)
                 //{
@@ -203,14 +200,37 @@ namespace GuardiansOfTheCode.Facades
                 //{
                 //    new RegularDamageIndicator().NotifyAboutDamage(_player.Health, damage);
                 //}
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
+
+                var commands = GetCommands(currentEnemy);
+                foreach (var command in commands)
+                {
+                    command.Execute();
+                    if(_player.Health <=0 || currentEnemy.Health <= 0)
+                    {
+                        break;
+                    }
+                }
 
 
             }
-
-
-
         }
+
+        private IEnumerable<ICommand> GetCommands (IEnemy enemy)
+        {
+            List<ICommand> commands = new List<ICommand>();
+            commands.Add(new PlayerEnemyBattleCommand(_player, enemy));
+            foreach(var card in _player.Cards)
+            {
+                commands.Add(new CardEnemyBattleCommand(card, enemy));
+            }
+
+            return commands;
+        }
+
+
+
+
 
 
     }
