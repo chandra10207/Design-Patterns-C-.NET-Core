@@ -22,6 +22,7 @@
     <None Remove="Observer\" />
     <None Remove="Command\" />
     <None Remove="Battlefields\" />
+    <None Remove="Multiplayer\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -40,5 +41,6 @@
     <Folder Include="Observer\" />
     <Folder Include="Command\" />
     <Folder Include="Battlefields\" />
+    <Folder Include="Multiplayer\" />
   </ItemGroup>
 </Project>
